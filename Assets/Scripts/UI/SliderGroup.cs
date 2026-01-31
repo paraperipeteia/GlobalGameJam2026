@@ -16,6 +16,7 @@ namespace UI
       private void Awake()
       {
          _rT = GetComponent<RectTransform>();
+         _sliders = new List<ResourceSlider>();
          Init();
       }
 
