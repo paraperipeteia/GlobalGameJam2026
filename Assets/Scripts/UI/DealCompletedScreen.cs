@@ -27,9 +27,9 @@ namespace UI
         {
             if (GameController.Instance != null)
             {
-                var emp = completedDeal._employees_offered;
-                var money = completedDeal._money_offered;
-                var fac = completedDeal._facilities_offered;
+                var emp = (int) completedDeal._employees_offered;
+                var money = (int) completedDeal._money_offered;
+                var fac = (int) completedDeal._facilities_offered;
 
                 resultText[0].text = $"Money offered: {money}";
                 resultText[1].text = $"Personnel offered: {emp}";

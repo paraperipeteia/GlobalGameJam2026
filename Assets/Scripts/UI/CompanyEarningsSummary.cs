@@ -16,9 +16,9 @@ namespace UI
         public void Init(Deal d)
         {
             companyNameText.text = d.companyName;
-            moneyGeneratedText.text = $"$ Generated: {d.money_generated}";
-            facilitiesGeneratedText.text = $"Facilities Generated: {d.facilities_generated}";
-            personnelGeneratedText.text = $"$ Employees Generated: {d.employees_generated}";
+            moneyGeneratedText.text = $"Money Generated: {d.money_generated:C}";
+            facilitiesGeneratedText.text = $"Facilities Generated: {d.facilities_generated:N0}";
+            personnelGeneratedText.text = $"Employees Generated: {d.employees_generated:N0}";
         }
     }
 }

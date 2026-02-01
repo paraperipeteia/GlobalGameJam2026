@@ -6,7 +6,6 @@
 
  public class Deal
     {
-        
         public string companyName = "UNINITIALIZED";
         public float board_happiness = 0;
         //these are what the deal offers per quarterly update...multiply by teh happiness 
@@ -63,12 +62,15 @@
             facilities_generated = base_facilities / 10;
             employees_generated = base_employees / 10;
 
-            companyName = GenerateRandomCompanyName();
+            companyName = //GenerateRandomCompanyName();
+            NameGen.Instance.GenerateRandomCompanyName(); //GenerateRandomCompanyName();
         }
 
         public bool MakeProposal(float offered_money, float offered_facilities, float offered_employees)
         {
             _money_offered = offered_money;
+            _employees_offered = offered_employees;
+            _facilities_offered = offered_facilities;
             board_happiness = 0;
             for (int i = 0; i < boardMembers.Count; i++)
             {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AudioTimer : MonoBehaviour
@@ -13,8 +14,28 @@ public class AudioTimer : MonoBehaviour
         currentTime = totalTime;
     }
 
+    private void OnEnable()
+    {
+        GameController.OnNewDealStarted += OnNewDealStarted; 
+    }
+
+    private void OnDisable()
+    {
+        GameController.OnNewDealStarted -= OnNewDealStarted; 
+    }
+
+    private void OnNewDealStarted()
+    {
+        currentTime = totalTime;
+    }
+    
     private void Update()
     {
+        if (GameController.Instance.currentDeal == null)
+        {
+            return;
+        }
+        
         currentTime -= Time.deltaTime;
 
         if (currentTime < 0)

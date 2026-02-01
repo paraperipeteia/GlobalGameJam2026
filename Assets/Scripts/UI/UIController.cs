@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Random = System.Random;
 
 namespace UI
 {
@@ -47,15 +44,26 @@ namespace UI
         {
             GameController.OnDealUpdated += HandleProposalUpdates;
             GameController.OnDealSuccess += OnDealSuccess; 
-            GameController.OnNewDealStarted += OnNewDealStarted; 
+            GameController.OnNewDealStarted += OnNewDealStarted;
+            GameController.QuarterCompleted += OnQuarterCompleted;
         }
 
         private void OnDisable()
         {
             GameController.OnDealUpdated -= HandleProposalUpdates;
             GameController.OnNewDealStarted -= OnNewDealStarted;
+            GameController.OnDealSuccess -= OnDealSuccess;
+            GameController.QuarterCompleted -= OnQuarterCompleted;
         }
 
+        private void OnQuarterCompleted()
+        {
+            if (quarterlyEarningsScreen != null)
+            {
+                quarterlyEarningsScreen.gameObject.SetActive(true);
+            } 
+        }
+        
         /// <summary>
         /// TODO - build this out to do proper updates - just testing scriptable objects here - David M.
         /// </summary>
@@ -91,7 +99,7 @@ namespace UI
             for (var index = 0; index < GameController.Instance.currentDeal.boardMembers.Count; index++)
             {
                 var happiness = GameController.Instance.currentDeal.boardMembers[index].happinessLevel;
-                Debug.Log($"Happiness is {happiness}");
+                //Debug.Log($"Happiness is {happiness}");
                 boardMembers[index].SetMask((int) happiness);
             }
         }
@@ -100,6 +108,7 @@ namespace UI
         {
             Debug.Log($"The current company name is: {GameController.Instance.currentDeal.companyName}");
             companyName.text = GameController.Instance.currentDeal.companyName;
+            clock.ResetClock();
         }
 
         public Sprite GetRandomBoardMemberSprite()
@@ -125,7 +134,6 @@ namespace UI
             {
                 completeScreen.gameObject.SetActive(true);
                 completeScreen.Init(d);
-                
             }
         }
         
@@ -141,6 +149,5 @@ namespace UI
                 quarterlyEarningsScreen.gameObject.SetActive(false);
             }
         }
-        
     }
 }
