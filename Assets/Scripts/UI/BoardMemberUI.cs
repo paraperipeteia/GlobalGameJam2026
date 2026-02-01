@@ -48,6 +48,11 @@ namespace UI
             }
         }
 
+        public void ChooseNewAvatar()
+        {
+            avatar.sprite = UIController.Instance.GetRandomBoardMemberSprite();
+        }
+        
         public void SetMask(int index)
         {
             currentMask.sprite = _d.maskSprites[index];

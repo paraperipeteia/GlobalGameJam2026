@@ -109,6 +109,10 @@ namespace UI
             Debug.Log($"The current company name is: {GameController.Instance.currentDeal.companyName}");
             companyName.text = GameController.Instance.currentDeal.companyName;
             clock.ResetClock();
+            foreach (var boardMemberUI in boardMembers)
+            {
+                boardMemberUI.ChooseNewAvatar();
+            }
         }
 
         public Sprite GetRandomBoardMemberSprite()
