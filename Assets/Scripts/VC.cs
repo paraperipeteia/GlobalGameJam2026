@@ -34,4 +34,9 @@ public class VC
         money -= deal._money_offered;
         activeDeals.Add(deal);
     }
+
+    public List<Deal> GetActiveDeals()
+    {
+        return  activeDeals;
+    }
 }

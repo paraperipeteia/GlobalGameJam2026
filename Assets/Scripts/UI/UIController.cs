@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = System.Random;
 
 namespace UI
 {
@@ -12,6 +15,7 @@ namespace UI
         public static UIController Instance { get; private set; }
         
         [SerializeField] private List<BoardMemberData> _memberData;
+        [SerializeField] private List<Sprite> _boardMemberSprites;
         
         [SerializeField] private TextMeshProUGUI companyName;
 
@@ -23,6 +27,11 @@ namespace UI
 
         [SerializeField] private SliderGroup sliders;
 
+        [SerializeField] private GameObject startScreen = null;
+        [SerializeField] private DealCompletedScreen completeScreen = null;
+        [SerializeField] private GameObject quarterlyEarningsScreen = null;
+        
+        
         private void Awake()
         {
             if (Instance != null)
@@ -37,6 +46,7 @@ namespace UI
         private void OnEnable()
         {
             GameController.OnDealUpdated += HandleProposalUpdates;
+            GameController.OnDealSuccess += OnDealSuccess; 
             GameController.OnNewDealStarted += OnNewDealStarted; 
         }
 
@@ -91,5 +101,46 @@ namespace UI
             Debug.Log($"The current company name is: {GameController.Instance.currentDeal.companyName}");
             companyName.text = GameController.Instance.currentDeal.companyName;
         }
+
+        public Sprite GetRandomBoardMemberSprite()
+        {
+            return _boardMemberSprites[UnityEngine.Random.Range(0, _boardMemberSprites.Count)];
+        }
+
+        public void StartGame()
+        {
+            GameController.Instance.StartGame();
+            
+            if (startScreen != null)
+            {
+                startScreen.gameObject.SetActive(false);    
+            }
+            
+            clock.StartCountdown();
+        }
+
+        private void OnDealSuccess(Deal d)
+        {
+            if (completeScreen != null)
+            {
+                completeScreen.gameObject.SetActive(true);
+                completeScreen.Init(d);
+                
+            }
+        }
+        
+        public void StartNextDeal()
+        {
+        }
+
+        public void CloseQuarterlyEarningsScreen()
+        {
+            // handle this
+            if (quarterlyEarningsScreen != null)
+            {
+                quarterlyEarningsScreen.gameObject.SetActive(false);
+            }
+        }
+        
     }
 }

@@ -6,6 +6,8 @@ namespace UI
 {
     public class Clock : MonoBehaviour
     {
+        public static event Action OnCountdownComplete;
+        
         private float _duration;
         private float _currentTime;
         private bool _countingDown = false;
@@ -17,7 +19,12 @@ namespace UI
     
         private void Awake()
         {
-            ClockTest();
+            Init(60.0f, () =>
+            {
+                Debug.Log("Countdown has completed!");
+                ResetClock();
+                OnCountdownComplete?.Invoke();
+            });
         }
 
         /// <summary>

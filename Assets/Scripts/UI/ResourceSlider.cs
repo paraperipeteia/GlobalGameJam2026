@@ -39,7 +39,7 @@ namespace UI
                 ResourceType.Money => new Color(62.0f, 145.0f, 32.0f, 255.0f),
                 ResourceType.Personnel => new Color(156.0f, 40.0f, 14.0f, 255.0f),
                 ResourceType.Facilities => new Color(12.0f, 50.0f, 148.0f, 255.0f),
-                _ => Color.white
+                _ => Color.black
             };
         }
 
@@ -58,6 +58,20 @@ namespace UI
             slider.maxValue = maxValue;
             slider.normalizedValue = 0.5f; // let's start off in the middle of the range
             currentValue.text = slider.value.ToString(GetStringFormat());
+            
+            var c = GetColor();
+            if (sliderFill != null)
+            {
+                sliderFill.color = c;
+                //sliderFill.CrossFadeAlpha(0.99f, 0.01f, false);
+            }
+
+            if (handle != null)
+            {
+                handle.color = c;
+                //handle.CrossFadeAlpha(0.99f, 0.01f, false);
+            }
+            
         }
         
         public void Init(ResourceType t)
@@ -67,7 +81,7 @@ namespace UI
             if (slider != null)
             {
                 // start amount is the max value
-                slider.maxValue = 0;
+                slider.maxValue = 1;
                 slider.minValue = 0;
                 slider.value = 0;
             }
@@ -77,14 +91,17 @@ namespace UI
                 resourceName.text = t.ToString();
             }
 
+            var c = GetColor();
             if (sliderFill != null)
-            { 
-                sliderFill.color = GetColor();
+            {
+                sliderFill.color = c;
+                //sliderFill.CrossFadeAlpha(0.99f, 0.01f, false);
             }
 
             if (handle != null)
             {
-                handle.color = GetColor();
+                handle.color = c;
+                //handle.CrossFadeAlpha(0.99f, 0.01f, false);
             }
 
             slider.onValueChanged.AddListener(TriggerChangeEvent);

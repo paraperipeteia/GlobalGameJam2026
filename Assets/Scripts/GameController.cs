@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static event Action OnDealUpdated;
-    public static event Action OnDealSuccess;
+    public static event Action<Deal> OnDealSuccess;
     public static event Action OnNewDealStarted;
     
     public static GameController Instance;
@@ -13,6 +13,9 @@ public class GameController : MonoBehaviour
     public VC playerVC;
 
     public Deal currentDeal;
+
+    private bool _canCloseDeal;
+    public bool CanCloseDeal => _canCloseDeal; 
     
     public void Awake()
     {
@@ -28,9 +31,14 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        StartNewDeal();
+        //StartNewDeal();
     }
 
+    public void StartGame()
+    {
+        StartNewDeal();
+    }
+    
     private void OnEnable()
     {
        ResourceSlider.OnSliderValueChanged += OnSliderChanged; 
@@ -59,18 +67,19 @@ public class GameController : MonoBehaviour
 
         if (currentDeal != null)
         {
-            bool accepted = currentDeal.MakeProposal(offeredMoney, offeredFacilities, offeredPersonnel);
-
+            _canCloseDeal = currentDeal.MakeProposal(offeredMoney, offeredFacilities, offeredPersonnel);
             Debug.Log("Proposal has changed...");
-            
-            // TODO - finish handling deal acceptance results - David M. 
-            if (accepted)
-            {
-                playerVC.AddDeal(currentDeal);
-                OnDealSuccess?.Invoke();
-                // TODO - we should trigger another event to clean up the UI (i.e., repopulate the board members, reset the sliders, and generate a new deal instance - DAM 
-            }
             OnDealUpdated?.Invoke();
+        }
+    }
+
+    public void TryCloseDeal()
+    {
+        if (_canCloseDeal)
+        {
+            Debug.Log("Closed Deal!");
+            playerVC.AddDeal(currentDeal);
+            OnDealSuccess?.Invoke(currentDeal);
         }
     }
 }

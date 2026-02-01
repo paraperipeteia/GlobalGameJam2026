@@ -41,6 +41,11 @@ namespace UI
             {
                 currentMask.sprite = _d.maskSprites[(int) status]; // default to OK 
             }
+
+            if (avatar != null)
+            {
+                avatar.sprite = UIController.Instance.GetRandomBoardMemberSprite();
+            }
         }
 
         public void SetMask(int index)
