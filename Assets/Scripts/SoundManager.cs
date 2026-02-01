@@ -7,6 +7,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip tickingClip;
     [SerializeField] private AudioClip TimesUPClip;
+    [SerializeField] private AudioClip CashClip;
+    [SerializeField] private AudioClip CrowdClip;
+    [SerializeField] private AudioClip FacilityClip;
     public void Awake()
     {
         Instance = this;
@@ -19,6 +22,18 @@ public class SoundManager : MonoBehaviour
     public void PlayTimesUp()
     {
         audioSource.PlayOneShot(TimesUPClip);
+    }
+    public void PlayCashSound()
+    {
+        audioSource.PlayOneShot(CashClip);
+    }
+    public void PlayCrownSound()
+    {
+        audioSource.PlayOneShot(CrowdClip);
+    }
+    public void PlayFacilitySound()
+    {
+        audioSource.PlayOneShot(FacilityClip);
     }
 
 }
