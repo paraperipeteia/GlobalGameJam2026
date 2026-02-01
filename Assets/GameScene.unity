@@ -3850,6 +3850,9 @@ MonoBehaviour:
   audioSource: {fileID: 1749149647}
   tickingClip: {fileID: 8300000, guid: 591752735fe215541bcca9562868ce49, type: 3}
   TimesUPClip: {fileID: 8300000, guid: 85f5fc4a9e6d2cf40994f63f25f897aa, type: 3}
+  CashClip: {fileID: 8300000, guid: 6be01b9f186df0e4eb40be8a6c60450d, type: 3}
+  CrowdClip: {fileID: 8300000, guid: 53e2ac530d6f55148bcc679bd5b7a557, type: 3}
+  FacilityClip: {fileID: 8300000, guid: db79c1cb4f530664b9d4202a6ed579ee, type: 3}
 --- !u!1 &1757901552
 GameObject:
   m_ObjectHideFlags: 0
