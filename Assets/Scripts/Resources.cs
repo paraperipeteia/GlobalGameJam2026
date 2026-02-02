@@ -1,5 +1,8 @@
 // For now, enums and general utils 
+
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public enum ResourceType
@@ -35,5 +38,36 @@ public static class Utils
             int r = Random.Range(0, i + 1);
             (list[i], list[r]) = (list[r], list[i]);
         }
+    }
+
+    public static float EaseInOutBack(float number)
+    {
+        const float c1 = 1.70158f;
+        const float c2 = c1 * 1.525f;
+
+        return number < 0.5f
+            ? (Mathf.Pow(2f * number, 2f) * ((c2 + 1f) * 2f * number - c2)) / 2.0f
+            : (Mathf.Pow(2f * number - 2f, 2f) * ((c2 + 1f) * (number * 2 - 2) + c2) + 2) / 2.0f;
+    }
+
+    public static float EaseInOutCubic(float x)
+    {
+        return x < 0.5 ? 4 * x * x * x : 1 - Mathf.Pow(-2 * x + 2, 3) / 2;
+    }
+
+    public static Func<float, float> PickRandomEase()
+    {
+        List<Func<float, float>> eases = new List<Func<float, float>>();
+        eases.Add(EaseInOutBack);
+        eases.Add(EaseInOutCubic);
+        eases.Add(EaseInOutCirc);
+        return eases[Random.Range(0, eases.Count - 1)];
+    }
+
+    public static float EaseInOutCirc(float x)
+    {
+        return x < 0.5
+            ? (1 - Mathf.Sqrt(1 - Mathf.Pow(2 * x, 2))) / 2
+            : (Mathf.Sqrt(1 - Mathf.Pow(-2 * x + 2, 2)) + 1) / 2;
     }
 }

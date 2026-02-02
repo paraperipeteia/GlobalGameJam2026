@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +48,7 @@ namespace UI
             GameController.OnDealSuccess += OnDealSuccess; 
             GameController.OnNewDealStarted += OnNewDealStarted;
             GameController.QuarterCompleted += OnQuarterCompleted;
+            Clock.OnCountdownComplete += OnCountdownComplete;
         }
 
         private void OnDisable()
@@ -55,8 +57,18 @@ namespace UI
             GameController.OnNewDealStarted -= OnNewDealStarted;
             GameController.OnDealSuccess -= OnDealSuccess;
             GameController.QuarterCompleted -= OnQuarterCompleted;
+            Clock.OnCountdownComplete -= OnCountdownComplete;
         }
 
+        private void OnCountdownComplete()
+        {
+            if (completeScreen != null)
+            {
+                completeScreen.gameObject.SetActive(true);
+                completeScreen.Init(null);
+            }
+        }
+        
         private void OnQuarterCompleted()
         {
             if (quarterlyEarningsScreen != null)
@@ -104,7 +116,6 @@ namespace UI
         private void OnNewDealStarted()
         {
             companyName.text = GameController.Instance.currentDeal.companyName;
-            clock.ResetClock();
 
             for (var index = 0; index < boardMembers.Count; index++)
             {
@@ -129,7 +140,7 @@ namespace UI
             {
                 startScreen.gameObject.SetActive(false);    
             }
-            
+            clock.ResetClock();
             clock.StartCountdown();
         }
 
@@ -144,6 +155,7 @@ namespace UI
         
         public void StartNextDeal()
         {
+            StartGame();
         }
 
         public void CloseQuarterlyEarningsScreen()

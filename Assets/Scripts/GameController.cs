@@ -39,11 +39,6 @@ public class GameController : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        //StartNewDeal();
-    }
-
     public void StartGame()
     {
         StartNewDeal();
@@ -59,7 +54,7 @@ public class GameController : MonoBehaviour
         ResourceSlider.OnSliderValueChanged -= OnSliderChanged;
     }
 
-    private void StartNewDeal()
+    public void StartNewDeal()
     {
         // TODO - do whatever clean up we need - David M. 
         currentDeal = new Deal();

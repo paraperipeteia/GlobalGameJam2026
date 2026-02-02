@@ -7,6 +7,8 @@ namespace UI
     public class Clock : MonoBehaviour
     {
         public static event Action OnCountdownComplete;
+       
+        private const int CountdownDuration = 60;
         
         private float _duration;
         private float _currentTime;
@@ -19,7 +21,7 @@ namespace UI
     
         private void Awake()
         {
-            Init(60.0f, () =>
+            Init(() =>
             {
                 ResetClock();
                 OnCountdownComplete?.Invoke();
@@ -31,7 +33,7 @@ namespace UI
         /// </summary>
         private void ClockTest()
         {
-            Init(60.0f, () =>
+            Init( () =>
             {
                 //Debug.Log("Countdown has completed!");
                 ResetClock(); 
@@ -42,11 +44,10 @@ namespace UI
         /// <summary>
         /// Initialize the clock with a specified duration. Optional param for callback Action 
         /// </summary>
-        /// <param name="countdownDuration">Duration the clock will countdown</param>
         /// <param name="onCountDownComplete">A callback invoked upon countdown complete</param>
-        public void Init(float countdownDuration, Action onCountDownComplete = null)
+        public void Init(Action onCountDownComplete = null)
         {
-            _duration = countdownDuration;
+            _duration = CountdownDuration;
             _currentTime = _duration;
             _onCountDownComplete = onCountDownComplete;
         }
@@ -56,7 +57,7 @@ namespace UI
         /// </summary>
         public void ResetClock()
         {
-            _currentTime = _duration;
+            _currentTime = CountdownDuration;
             _countingDown = false;
         }
 
@@ -97,6 +98,7 @@ namespace UI
             if (_currentTime < 0)
             {
                 _duration = 0;
+                _countingDown = false;
                 _onCountDownComplete?.Invoke();
             }
         }

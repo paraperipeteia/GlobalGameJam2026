@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,20 +11,30 @@ namespace UI
         [SerializeField] private List<TextMeshProUGUI> resultText;
         [SerializeField] private Button nextDealButton = null;
 
-        private void Awake()
+        [SerializeField] private GameObject rejected = null; 
+        [SerializeField] private GameObject accepted = null; 
+        
+        public void NextDealButtonClicked()
         {
-            if (nextDealButton != null)
-            {
-                nextDealButton.onClick.AddListener(() =>
-                {
-                    UIController.Instance.StartNextDeal();
-                    gameObject.SetActive(false);
-                });
-            } 
+            UIController.Instance.StartGame();
+            gameObject.SetActive(false);
         }
 
         public void Init(Deal completedDeal)
         {
+            // if the deal is null, the user ran out of time and the deal is rejected
+            if (completedDeal == null)
+            {
+                // make sure the accepted container is turned off 
+                if (accepted != null) accepted.gameObject.SetActive(false);
+                if (rejected != null) rejected.gameObject.SetActive(true);
+                return;
+            }
+
+            // make sure the rejected container is turned off 
+            rejected.gameObject.SetActive(false);
+            accepted.gameObject.SetActive(true);
+
             if (GameController.Instance != null)
             {
                 var emp = (int) completedDeal._employees_offered;
