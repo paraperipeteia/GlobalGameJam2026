@@ -46,7 +46,7 @@ public class AudioTimer : MonoBehaviour
         {
             tickingPlayed = true;
             SoundManager.Instance.PlayTicking15Sec();
-            Debug.Log("Ticking Sound Played");
+            //Debug.Log("Ticking Sound Played");
         }
 
         // Play time's up sound once at 0 seconds
@@ -54,7 +54,7 @@ public class AudioTimer : MonoBehaviour
         {
             timesUpPlayed = true;
             SoundManager.Instance.PlayTimesUp();
-            Debug.Log("TimesUp Sound Played");
+            //Debug.Log("TimesUp Sound Played");
         }
     }
 }

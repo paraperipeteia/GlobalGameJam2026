@@ -20,6 +20,16 @@ namespace UI
         
         public void Init(BoardMemberData data,  HappinessLevel status = HappinessLevel.Happy)
         {
+            UpdateMemberType(data, status);
+        }
+
+        public void ChooseNewAvatar()
+        {
+            avatar.sprite = UIController.Instance.GetRandomBoardMemberSprite();
+        }
+
+        public void UpdateMemberType(BoardMemberData data, HappinessLevel l)
+        {
             _d = data;
 
             if (frame != null)
@@ -39,19 +49,16 @@ namespace UI
 
             if (currentMask != null)
             {
-                currentMask.sprite = _d.maskSprites[(int) status]; // default to OK 
+                currentMask.sprite = _d.maskSprites[(int) l]; // default to OK 
             }
 
             if (avatar != null)
             {
                 avatar.sprite = UIController.Instance.GetRandomBoardMemberSprite();
-            }
+            } 
         }
-
-        public void ChooseNewAvatar()
-        {
-            avatar.sprite = UIController.Instance.GetRandomBoardMemberSprite();
-        }
+        
+        
         
         public void SetMask(int index)
         {

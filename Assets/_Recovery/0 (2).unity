@@ -345,12 +345,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 130
   m_fontSizeBase: 125
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 100
+  m_fontSizeMax: 130
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -564,7 +564,6 @@ GameObject:
   - component: {fileID: 133210831}
   - component: {fileID: 133210830}
   - component: {fileID: 133210829}
-  - component: {fileID: 133210832}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -668,8 +667,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8616421566285679385, guid: 43fb54e0eeb4e945ba9276c8b4de0499, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -686,21 +685,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133210827}
   m_CullTransparentMesh: 1
---- !u!114 &133210832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133210827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6d93a55101349f18954ea58061b95a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.ButtonFlash
-  defaultBtnColor: {r: 1, g: 1, b: 1, a: 0}
-  targetFlashColor: {r: 0.8207547, g: 0.19744569, b: 0.19744569, a: 0}
-  image: {fileID: 133210830}
 --- !u!1 &173185904
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.3499999, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -940,10 +924,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.DealButton
   btnImage: {fileID: 278548515}
-  defaultBtnColor: {r: 1, g: 1, b: 1, a: 1}
-  targetFlashColor: {r: 0.17254902, g: 0.27450982, b: 0.59607846, a: 0.9882353}
-  closeDealSprite: {fileID: -8616421566285679385, guid: 43fb54e0eeb4e945ba9276c8b4de0499, type: 3}
-  cannotCloseDealSprite: {fileID: 6447375911489060737, guid: 23a779c21afdf0108961744e8f751f49, type: 3}
+  defaultBtnColor: {r: 0, g: 1, b: 0.3499999, a: 1}
+  targetFlashColor: {r: 0, g: 0, b: 0, a: 0.9882353}
 --- !u!1 &436911745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,12 +1443,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 130
   m_fontSizeBase: 125
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 100
+  m_fontSizeMax: 130
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1580,8 +1562,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289478928
-  m_fontColor: {r: 0.0627451, g: 0.25490198, b: 0.6745098, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4125,7 +4107,6 @@ GameObject:
   - component: {fileID: 1987939596}
   - component: {fileID: 1987939595}
   - component: {fileID: 1987939594}
-  - component: {fileID: 1987939597}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4247,21 +4228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987939592}
   m_CullTransparentMesh: 1
---- !u!114 &1987939597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987939592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6d93a55101349f18954ea58061b95a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.ButtonFlash
-  defaultBtnColor: {r: 1, g: 1, b: 1, a: 0}
-  targetFlashColor: {r: 0.29782334, g: 0.29782334, b: 0.6841028, a: 1}
-  image: {fileID: 1987939595}
 --- !u!1 &2032070342
 GameObject:
   m_ObjectHideFlags: 0
@@ -4709,7 +4675,6 @@ GameObject:
   - component: {fileID: 2097521298}
   - component: {fileID: 2097521297}
   - component: {fileID: 2097521296}
-  - component: {fileID: 2097521299}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4813,8 +4778,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6447375911489060737, guid: 23a779c21afdf0108961744e8f751f49, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4831,21 +4796,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097521294}
   m_CullTransparentMesh: 1
---- !u!114 &2097521299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097521294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6d93a55101349f18954ea58061b95a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.ButtonFlash
-  defaultBtnColor: {r: 1, g: 1, b: 1, a: 0}
-  targetFlashColor: {r: 0, g: 0.12659237, b: 0.96780854, a: 0}
-  image: {fileID: 2097521297}
 --- !u!1001 &316311911255393801
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ namespace UI
         {
             Init(60.0f, () =>
             {
-                Debug.Log("Countdown has completed!");
+                //Debug.Log("Countdown has completed!");
                 ResetClock();
                 OnCountdownComplete?.Invoke();
             });
@@ -34,7 +34,7 @@ namespace UI
         {
             Init(60.0f, () =>
             {
-                Debug.Log("Countdown has completed!");
+                //Debug.Log("Countdown has completed!");
                 ResetClock(); 
             });
             StartCountdown();

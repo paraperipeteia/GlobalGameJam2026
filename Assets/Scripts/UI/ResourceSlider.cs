@@ -33,7 +33,7 @@ namespace UI
 
         private Color GetColor()
         {
-            Debug.Log($"GetColor for type: {_t}");
+            //Debug.Log($"GetColor for type: {_t}");
             return _t switch
             {
                 ResourceType.Money => new Color(62.0f/255.0f, 145.0f/255.0f, 32.0f/255.0f, 255.0f/255.0f),

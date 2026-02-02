@@ -106,12 +106,16 @@ namespace UI
 
         private void OnNewDealStarted()
         {
-            Debug.Log($"The current company name is: {GameController.Instance.currentDeal.companyName}");
             companyName.text = GameController.Instance.currentDeal.companyName;
             clock.ResetClock();
-            foreach (var boardMemberUI in boardMembers)
+
+            for (var index = 0; index < boardMembers.Count; index++)
             {
-                boardMemberUI.ChooseNewAvatar();
+                var boardType = GameController.Instance.currentDeal.boardMembers[index].bmtype;
+                var happiness = GameController.Instance.currentDeal.boardMembers[index].happinessLevel;
+                var boardMemberUI = boardMembers[index];
+                var memberData = _memberData.Find(d => d.boardMemberType == boardType);
+                boardMemberUI.UpdateMemberType(memberData, happiness);
             }
         }
 

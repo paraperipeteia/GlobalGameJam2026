@@ -1,5 +1,3 @@
-using System;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +12,10 @@ namespace UI
 
         [SerializeField] private Color targetFlashColor;
 
+        [SerializeField] private Sprite closeDealSprite;
+        
+        [SerializeField] private Sprite cannotCloseDealSprite; 
+        
         private float fadeDuration = 0.3f;
         private float fadeTime = 0;
         
@@ -26,9 +28,20 @@ namespace UI
             {
                 btnImage.CrossFadeColor(targetFlashColor, fadeDuration, true, false);
                 fading = true;
+                btnImage.sprite = closeDealSprite;
                 return;
             }
 
+            if (!GameController.Instance.CanCloseDeal && (fading || reversing))
+            {
+                fading = false;
+                reversing = false;
+                fadeTime = 0f;
+                btnImage.sprite = cannotCloseDealSprite;
+                btnImage.CrossFadeColor(Color.white, 0, true, false); 
+                return;
+            }
+            
             if (fading)
             {
                 fadeTime += Time.deltaTime;
@@ -57,9 +70,9 @@ namespace UI
                 return;
             }
             
-            if (btnImage != null)
+            if (btnImage != null && cannotCloseDealSprite != null)
             {
-                btnImage.color = defaultBtnColor;
+                btnImage.sprite = cannotCloseDealSprite;
             }
         }
     }

@@ -12,7 +12,7 @@ namespace UI
             if (Input.GetMouseButtonUp(0) && _pointerUpTriggered)
             {
                 // TODO - add audio trigger here
-                Debug.Log("Pointer is up");
+                //Debug.Log("Pointer is up");
                 _pointerUpTriggered = false;
             }
         }

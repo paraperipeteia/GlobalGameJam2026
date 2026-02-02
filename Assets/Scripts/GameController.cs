@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.Log("GameController instance already exists! - destroying it");
+            //Debug.Log("GameController instance already exists! - destroying it");
             Destroy(gameObject);
         }
 
@@ -73,16 +73,16 @@ public class GameController : MonoBehaviour
         var offeredFacilities = sliderValues.Find(v => v.Item1 == ResourceType.Facilities).Item2;
         var offeredPersonnel =  sliderValues.Find(v => v.Item1 == ResourceType.Personnel).Item2;
         
-        Debug.Log("offered Money: " + offeredMoney);
-        Debug.Log("offered Facilities: " + offeredFacilities);
-        Debug.Log("offered Personnel: " + offeredPersonnel);
+        //Debug.Log("offered Money: " + offeredMoney);
+        //Debug.Log("offered Facilities: " + offeredFacilities);
+        //Debug.Log("offered Personnel: " + offeredPersonnel);
         
         // Make sure the current offer isn't null before trying to make a new proposal 
 
         if (currentDeal != null)
         {
             _canCloseDeal = currentDeal.MakeProposal(offeredMoney, offeredFacilities, offeredPersonnel);
-            Debug.Log("Proposal has changed...");
+        //    Debug.Log("Proposal has changed...");
             OnDealUpdated?.Invoke();
         }
     }
@@ -91,7 +91,7 @@ public class GameController : MonoBehaviour
     {
         if (_canCloseDeal)
         {
-            Debug.Log("Closed Deal!");
+            //Debug.Log("Closed Deal!");
             playerVC.AddDeal(currentDeal);
             OnDealSuccess?.Invoke(currentDeal);
             _currentQuarterDeals++;
