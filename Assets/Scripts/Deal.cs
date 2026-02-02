@@ -29,6 +29,7 @@
             return new BoardMember(randomType);
         }
 
+        // Initial method used for random company name generation 
         string GenerateRandomCompanyName()
         {
             string[] prefixes = { "Tech", "Info", "Data", "Net", "Sys", "Global", "Next", "Future", "Prime", "Alpha" };
@@ -62,21 +63,20 @@
             facilities_generated = base_facilities / 10;
             employees_generated = base_employees / 10;
 
-            companyName = //GenerateRandomCompanyName();
-            NameGen.Instance.GenerateRandomCompanyName(); //GenerateRandomCompanyName();
+            companyName = NameGen.Instance.GenerateRandomCompanyName(); 
         }
 
-        public bool MakeProposal(float offered_money, float offered_facilities, float offered_employees)
+        public bool MakeProposal(float offeredMoney, float offeredFacilities, float offeredEmployees)
         {
-            _money_offered = offered_money;
-            _employees_offered = offered_employees;
-            _facilities_offered = offered_facilities;
+            _money_offered = offeredMoney;
+            _employees_offered = offeredEmployees;
+            _facilities_offered = offeredFacilities;
             board_happiness = 0;
             for (int i = 0; i < boardMembers.Count; i++)
             {
-                boardMembers[i].UpdateHappiness(offered_money,
-                    offered_facilities,
-                    offered_employees);
+                boardMembers[i].UpdateHappiness(offeredMoney,
+                    offeredFacilities,
+                    offeredEmployees);
                 board_happiness += boardMembers[i].happiness;
             }
             board_happiness /= boardMembers.Count;

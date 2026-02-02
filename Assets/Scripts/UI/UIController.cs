@@ -28,6 +28,7 @@ namespace UI
         [SerializeField] private DealCompletedScreen completeScreen = null;
         [SerializeField] private GameObject quarterlyEarningsScreen = null;
         
+        [SerializeField] private GameObject menuScreen = null; 
         
         private void Awake()
         {
@@ -69,7 +70,6 @@ namespace UI
         /// </summary>
         public void Init()
         {
-            // copy scriptable objects 
             var boardMemberCopies = new List<BoardMemberData>();
             
             foreach (var memberData in _memberData)
@@ -94,12 +94,9 @@ namespace UI
 
         private void HandleProposalUpdates()
         {
-            // TODO - this is where we'll update the UI to reflect current happiness level of the board members - David M.
-
             for (var index = 0; index < GameController.Instance.currentDeal.boardMembers.Count; index++)
             {
                 var happiness = GameController.Instance.currentDeal.boardMembers[index].happinessLevel;
-                //Debug.Log($"Happiness is {happiness}");
                 boardMembers[index].SetMask((int) happiness);
             }
         }
@@ -151,10 +148,17 @@ namespace UI
 
         public void CloseQuarterlyEarningsScreen()
         {
-            // handle this
             if (quarterlyEarningsScreen != null)
             {
                 quarterlyEarningsScreen.gameObject.SetActive(false);
+            }
+        }
+
+        public void ToggleMenuScreen()
+        {
+            if (menuScreen != null)
+            {
+                menuScreen.SetActive(!menuScreen.activeSelf);
             }
         }
     }

@@ -25,6 +25,7 @@ public class VC
 
         Debug.Log("Quarterly Report Bottom Line:");
         Debug.Log($"Facilities: {facilities}, Employees: {employees}, Money: {money}");
+        Debug.Log("______________END OF REPORT______________");
     }
 
     public void AddDeal(Deal deal)

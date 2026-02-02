@@ -6,8 +6,6 @@ public class MusicTimer : MonoBehaviour
     private float CurrentTime;
     [SerializeField] public AudioSource Music;
 
-    //private bool TickingIsPlayed = false;
-    //private bool TimesUpIsPlayed = false;
     private bool IsVolumeLow = false;
     private bool IsVolumeRestored = false;
 
@@ -21,13 +19,16 @@ public class MusicTimer : MonoBehaviour
         Music.Play();
     }
 
+    public void AdjustMusicVolume(float volume)
+    {
+        Music.volume = volume;
+    }
+
     // Update is called once per frame
     void Update()
     {
         CurrentTime = CurrentTime - Time.deltaTime;
-
         
-
         if (!IsVolumeLow && CurrentTime <= 15f && CurrentTime > 0)
         {
             IsVolumeLow = true;

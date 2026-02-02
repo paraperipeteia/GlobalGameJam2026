@@ -33,7 +33,6 @@ namespace UI
 
         private Color GetColor()
         {
-            //Debug.Log($"GetColor for type: {_t}");
             return _t switch
             {
                 ResourceType.Money => new Color(62.0f/255.0f, 145.0f/255.0f, 32.0f/255.0f, 255.0f/255.0f),
@@ -93,13 +92,11 @@ namespace UI
             if (sliderFill != null)
             {
                 sliderFill.color = c;
-                //sliderFill.CrossFadeAlpha(0.99f, 0.01f, false);
             }
 
             if (handle != null)
             {
                 handle.color = c;
-                //handle.CrossFadeAlpha(0.99f, 0.01f, false);
             }
 
             slider.onValueChanged.AddListener(TriggerChangeEvent);
