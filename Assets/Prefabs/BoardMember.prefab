@@ -56,8 +56,8 @@ MonoBehaviour:
   avatar: {fileID: 4513211082762204788}
   currentMask: {fileID: 3394242825259485434}
   background: {fileID: 1155656247858022533}
-  leftExtremity: {x: -30, y: -2.5}
-  rightExtremity: {x: 30, y: 2.5}
+  leftExtremity: {x: -20, y: -2.5}
+  rightExtremity: {x: 20, y: 2.5}
 --- !u!1 &3990973683346002208
 GameObject:
   m_ObjectHideFlags: 0
