@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 namespace UI
 {
@@ -29,6 +30,10 @@ namespace UI
 
         private Vector2 usedLeftExtremity; 
         private Vector2 usedRightExtremity;
+
+        private Vector2 _startPosition; 
+        
+        private int directionMod = 1;
         
         private bool targetLeft = true;
 
@@ -37,8 +42,7 @@ namespace UI
         public void Init(BoardMemberData data,  HappinessLevel status = HappinessLevel.Happy)
         {
             UpdateMemberType(data, status);
-
-       
+            _startPosition = currentMask.transform.localPosition;
         }
 
         public void ChooseNewAvatar()
@@ -75,12 +79,13 @@ namespace UI
                 avatar.sprite = UIController.Instance.GetRandomBoardMemberSprite();
             }      
             
-            var extremityL = UnityEngine.Random.Range(5, leftExtremity.x);
-            var extremityR = UnityEngine.Random.Range(5, rightExtremity.x);
+            var extremityL = UnityEngine.Random.Range(leftExtremity.x/2, leftExtremity.x);
+            var extremityR = UnityEngine.Random.Range(rightExtremity.x/2, rightExtremity.x);
             usedLeftExtremity = new Vector2(extremityL, leftExtremity.y);
             usedRightExtremity = new Vector2(extremityR, rightExtremity.y);
             totalTime = UnityEngine.Random.Range(0.5f, 2.0f);
             easeFunc = Utils.PickRandomEase();
+            directionMod = UnityEngine.Random.Range(0, 100) > 50 ? 1 : -1;
         }
 
         private void Update()
@@ -88,7 +93,7 @@ namespace UI
             if (currentTime >= totalTime || currentTime <= 0)
             {
                 currentTime = currentTime <= 0 ? 0 : totalTime;
-                currentMask.transform.localPosition = new Vector2(targetLeft? usedLeftExtremity.x : usedRightExtremity.x, currentMask.transform.localPosition.y);
+                currentMask.transform.localPosition = new Vector2(_startPosition.x + (targetLeft? usedLeftExtremity.x : usedRightExtremity.x), currentMask.transform.localPosition.y);
                 targetLeft = !targetLeft;
             }
             
@@ -96,10 +101,10 @@ namespace UI
             currentTime += Time.deltaTime * timeMod;
             
             var amount = easeFunc(currentTime / totalTime);
-            float totalDistX = usedRightExtremity.x - usedLeftExtremity.x;
-            float totalDistY = usedRightExtremity.y - usedLeftExtremity.y;
-            float positionX = usedRightExtremity.x - (totalDistX * amount); 
-            float positionY = usedRightExtremity.y - (totalDistY * amount);
+            var totalDistX = usedRightExtremity.x - usedLeftExtremity.x;
+            var totalDistY = usedRightExtremity.y - usedLeftExtremity.y;
+            var positionX = _startPosition.x + (usedRightExtremity.x - (totalDistX * amount * directionMod)); 
+            var positionY = _startPosition.y + (usedRightExtremity.y - (totalDistY * amount));
             currentMask.transform.localPosition = new Vector2(positionX, positionY);
         }
 
