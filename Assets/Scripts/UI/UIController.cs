@@ -28,8 +28,13 @@ namespace UI
         [SerializeField] private GameObject startScreen = null;
         [SerializeField] private DealCompletedScreen completeScreen = null;
         [SerializeField] private GameObject quarterlyEarningsScreen = null;
+        [SerializeField] private GameObject creditScreen = null;
+        [SerializeField] private GameObject menuScreen = null;
+
+        // Note - these should rightfully be in a CreditScreen script but this is a quick and dirty solutions - don't do this on a big project - D. McFarlane 
+        [SerializeField] private GameObject creditContainer = null;
+        [SerializeField] private GameObject aboutContainer = null;
         
-        [SerializeField] private GameObject menuScreen = null; 
         
         private void Awake()
         {
@@ -171,6 +176,39 @@ namespace UI
             if (menuScreen != null)
             {
                 menuScreen.SetActive(!menuScreen.activeSelf);
+            }
+        }
+
+        public void CloseCreditScreen()
+        {
+            if (creditScreen != null)
+            {
+                creditScreen.gameObject.SetActive(false);
+            }
+        }
+
+        public void OpenCreditScreen()
+        {
+            if (creditScreen != null)
+            {
+                creditScreen.gameObject.SetActive(true);
+            }
+        }
+        
+        public void ShowCredits()
+        {
+            if (creditContainer != null)
+            {
+                creditContainer.gameObject.SetActive(true);
+                aboutContainer.gameObject.SetActive(false);
+            }
+        }
+        public void ShowAboutDetails()
+        {
+            if (aboutContainer != null)
+            {
+                creditContainer.gameObject.SetActive(false);
+                aboutContainer.gameObject.SetActive(true);
             }
         }
     }
