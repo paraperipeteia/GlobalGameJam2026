@@ -54,7 +54,7 @@ namespace UI
 
             if (earningsScrollRect != null)
             {
-                earningsScrollRect.content.localPosition= new Vector2(earningsScrollRect.content.localPosition.x, 0f);
+                earningsScrollRect.content.position = new Vector2(earningsScrollRect.content.position.x, 0f);
             }
         }
     }
