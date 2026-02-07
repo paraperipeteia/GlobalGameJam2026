@@ -104,6 +104,7 @@ namespace UI
             _targetLeft = true; 
             // reset rotations 
             _currentTime = 0.0f;
+            currentMask.rectTransform.localScale = Vector2.one * _maxScale;
             currentMask.rectTransform.localRotation = Quaternion.identity;
             _maxRotation = UnityEngine.Random.Range(Mathf.PI / 7f, Mathf.PI / 5.5f);
         }
@@ -139,8 +140,12 @@ namespace UI
             currentMask.transform.localPosition = new Vector2(_startPosition.x + x, _startPosition.y + y);
             
             // add some scaling 
-            var clampedVal = _maxScale - amount * (_maxScale - _minScale);
+            var defaultScale = (_maxScale + _minScale) / 2f;
+            var diff = _maxScale - defaultScale;
+            var basis = _targetLeft ? 1 : 0; 
+            var clampedVal = defaultScale + (basis * diff) + diff * amount * (_targetLeft ? -1f : 1.0f);
             currentMask.transform.localScale = new Vector2(clampedVal, clampedVal);
+            
             // rotations
             DoRotation(Mathf.Sin(Mathf.PI * 2 * amount * (_targetLeft ? -1 : 1)));
         }
